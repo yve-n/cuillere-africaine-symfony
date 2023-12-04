@@ -2,15 +2,28 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content=" site internet cuillère africaine" />
+        <meta name="author" content="Nguetche yve Carelle" />
+        <title>{% block title %}Cuillère africaine{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {% block stylesheets %}
-        {% endblock %}
+        
+        <!-- fichiers css -->
+        {% block stylesheets %} {% endblock %}
+		<link rel="stylesheet" href="{{ asset('assets/css/styles.css')}}">
+		<link rel="stylesheet" href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-        {% block javascripts %}
-        {% endblock %}
+         <!-- fichiers js -->
+        {% block javascripts %} {% endblock %}
+        <script src="{{ asset('assets/js/script.js')}}" defer></script>
+
     </head>
     <body>
-        {% block body %}{% endblock %}
+        {% include "_partials/_nav.html.twig" %}
+		{% block body %}{% endblock %}
+        {% include "_partials/_footer.html.twig" %}
     </body>
 </html>
