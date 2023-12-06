@@ -27,7 +27,6 @@
 							<tr>
 								<th>Name</th>
 								<th>Slug</th>
-								<th>Parent</th>
 								<th>Actions</th>
 							</tr>
 						</thead>
@@ -35,7 +34,6 @@
 							<tr>
 								<th>Name</th>
 								<th>Slug</th>
-								<th>Parent</th>
 								<th>Actions</th>
 							</tr>
 						</tfoot>
@@ -43,10 +41,7 @@
 							{% for category in categories %}
 								<tr>
 									<td>{{category.name}}</td>
-									<td>{{category.slug}}
-									</td>
-									<td>{{ category.parent ?? null  ? category.parent.name : '<span class="badge rounded-pill text-bg-dark"> categorie Parente</span>' }}
-									</td>
+									<td>{{category.slug}}</td>
 									<td>
 										<div class="d-flex mt-3 justify-content-center">
 											<a class="btn btn-info mr-3" href="{{path('app_admin_category_edit',{'id':category.id})}}">Edit</a>
