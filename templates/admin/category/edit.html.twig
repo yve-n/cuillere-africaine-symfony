@@ -1,0 +1,21 @@
+{% extends '_layouts/_admin.html.twig'%}
+
+{% block title %} Edit {% endblock %}
+{% block h1 %} Edit category{% endblock %}
+{% block body %}
+	<div class="container">
+		<div class="pt-5 mb-5">
+            <h3>modifier la catégorie</h3>
+            <hr>
+        </div>
+        {{form_start(editCategoryForm)}}
+        <div class=" mb-3">
+            {{form_row(editCategoryForm.name)}}
+        </div>
+         <div class=" mb-3">
+            {{form_row(editCategoryForm.parent)}}
+        </div>
+        <button type="submit" class="my-3 col btn btn-primary">OK</button>
+        {{form_end(editCategoryForm)}}
+	</div>
+{% endblock %}
