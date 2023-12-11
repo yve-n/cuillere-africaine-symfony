@@ -1,0 +1,27 @@
+{% extends '_layouts/_admin.html.twig'%}
+
+{% block title %} Edit {% endblock %}
+{% block h1 %} Edit product{% endblock %}
+{% block body %}
+	<div class="container">
+		<div class="pt-5 mb-5">
+            <h3>modifier le produit</h3>
+            <hr>
+        </div>
+        {{form_start(editProductForm)}}
+        <div class=" mb-3">
+            {{form_row(editProductForm.name)}}
+        </div>
+        <div class="mb-3">
+            {{form_row(editProductForm.description)}}
+        </div>
+        <div class="mb-3">
+            {{form_row(editProductForm.price)}}
+        </div>
+        <div class="mb-3">
+            {{form_row(editProductForm.category)}}
+        </div>
+        <button type="submit" class="my-3 col btn btn-primary">OK</button>
+        {{form_end(editProductForm)}}
+	</div>
+{% endblock %}

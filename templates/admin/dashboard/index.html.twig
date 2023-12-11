@@ -31,7 +31,7 @@
 						<div class="col mr-2">
 							<div class="text-xs font-weight-bold text-success text-uppercase mb-1">
 								products</div>
-							<div class="h5 mb-0 font-weight-bold text-gray-800">10</div>
+							<div class="h5 mb-0 font-weight-bold text-gray-800">{{number_of_products}}</div>
 						</div>
 						<div class="col-auto">
 							<i class="fas fa-tshirt fa-2x text-gray-300"></i>
@@ -99,8 +99,7 @@
                                         <tr>
                                             <th>Name</th>
                                             <th>Price</th>
-                                            <th>Quantity</th>
-											<th>Sold price</th>
+											<th>Slug</th>
                                             <th>Category</th>
 											<th>Actions</th>
                                         </tr>
@@ -109,23 +108,21 @@
                                         <tr>
                                             <th>Name</th>
                                             <th>Price</th>
-                                            <th>Quantity</th>
-											<th>Sold price</th>
+											<th>Slug</th>
                                             <th>Category</th>
 											<th>Actions</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
-									{# {% for product in lastProduct %}
+									{% for product in last_products %}
                                         <tr>
                                             <td>{{product.name}}</td>
                                             <td>{{product.price}} €</td>
-                                            <td>{{product.quantity}}</td>
-											<td>{{product.soldPrice|default('-')}}</td>
+											<td>{{product.slug}}</td>
                                             <td>{{product.category.name}}</td>
-											<td><a class="btn btn-info" href="{{path('admin_product_edit',{'id':product.id})}}">Edit</a></td>
+											<td><a class="btn btn-info" href="{{path('app_admin_product_edit',{'id':product.id})}}">Edit</a></td>
 										</tr>
-									{% endfor %} #}
+									{% endfor %}
                                     </tbody>
                                 </table>
                             </div>
@@ -157,8 +154,7 @@
                                         <tr>
                                             <td>{{category.name}}</td>
                                             <td>{{category.slug}} </td>
-											<td>actions</td>
-											{# <td><a class="btn btn-info" href="{{path('app_admin_dashboard',{'id':category.id})}}">Edit</a></td> #}
+											<td><a class="btn btn-info" href="{{path('app_admin_category_edit',{'id':category.id})}}">Edit</a></td>
 										</tr>
 									{% endfor %}
                                     </tbody>

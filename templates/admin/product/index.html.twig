@@ -1,0 +1,58 @@
+{% extends '_layouts/_admin.html.twig'%}
+
+{% block title %}Products{% endblock %}
+{% block h1 %} Manage Products{% endblock %}
+
+{% block body %}
+	<!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3 d-flex justify-content-between">
+                            <h6 class="m-0 font-weight-bold text-primary">All products</h6>
+                            <a class="btn btn-primary" href="{{path('app_admin_product_add')}}">Add Product</a>
+
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Price</th>
+                                            <th>Slug</th>
+                                            <th>Category</th>
+											<th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Price</th>
+                                            <th>Slug</th>
+                                            <th>Category</th>
+											<th>Actions</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+									{% for product in products %}
+                                        <tr>
+                                            <td>{{product.name}}</td>
+                                            <td>{{product.price}} €</td>
+                                            <td>{{product.slug}}</td>
+                                            <td>{{product.category.name}}</td>
+											<td>
+                                            <div class="d-flex mt-3 justify-content-center">
+                                                <a class="btn btn-info mr-3" href="{{path('app_admin_product_edit',{'id':product.id})}}">Edit</a>
+                                                <form action="{{path('app_admin_product_delete',{'id':product.id})}}" method="post">
+                                                    <input type="hidden" name="_token" value="{{csrf_token('delete'~ product.id)}}">
+                                                    <button class="btn btn-danger">Delete</button>
+                                                </form>
+                                            </div>
+                                            </td>
+										</tr>
+									{% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+        </div>
+{% endblock %}
