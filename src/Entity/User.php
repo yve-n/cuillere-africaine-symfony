@@ -31,10 +31,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
-    #[ORM\OneToOne(mappedBy: 'userId', cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
     private ?UserProfile $userProfile = null;
 
-    #[ORM\OneToMany(mappedBy: 'userId', targetEntity: Order::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Order::class, orphanRemoval: true)]
     private Collection $orders;
 
     #[ORM\Column(type: 'boolean')]
@@ -123,8 +123,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setUserProfile(UserProfile $userProfile): static
     {
         // set the owning side of the relation if necessary
-        if ($userProfile->getUserId() !== $this) {
-            $userProfile->setUserId($this);
+        if ($userProfile->getUser() !== $this) {
+            $userProfile->setUser($this);
         }
 
         $this->userProfile = $userProfile;
@@ -144,7 +144,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if (!$this->orders->contains($order)) {
             $this->orders->add($order);
-            $order->setUserId($this);
+            $order->setUser($this);
         }
 
         return $this;
@@ -154,8 +154,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if ($this->orders->removeElement($order)) {
             // set the owning side to null (unless already changed)
-            if ($order->getUserId() === $this) {
-                $order->setUserId(null);
+            if ($order->getUser() === $this) {
+                $order->setUser(null);
             }
         }
 

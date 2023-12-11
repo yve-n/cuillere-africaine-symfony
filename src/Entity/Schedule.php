@@ -25,7 +25,7 @@ class Schedule
 
     #[ORM\OneToOne(inversedBy: 'schedule', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Restaurant $restaurantId = null;
+    private ?Restaurant $restaurant = null;
 
     public function getId(): ?int
     {
@@ -68,14 +68,14 @@ class Schedule
         return $this;
     }
 
-    public function getRestaurantId(): ?Restaurant
+    public function getRestaurant(): ?Restaurant
     {
-        return $this->restaurantId;
+        return $this->restaurant;
     }
 
-    public function setRestaurantId(Restaurant $restaurantId): static
+    public function setRestaurant(Restaurant $restaurant): static
     {
-        $this->restaurantId = $restaurantId;
+        $this->restaurant = $restaurant;
 
         return $this;
     }

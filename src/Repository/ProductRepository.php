@@ -45,4 +45,14 @@ class ProductRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+public function getLastProducts(int $limit) : array
+   {
+    return $this->createQueryBuilder('p')
+      ->orderBy('p.id', 'DESC')
+      ->setMaxResults($limit)
+      ->getQuery()
+      ->getResult()
+    ;
+   }
 }

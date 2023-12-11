@@ -22,7 +22,7 @@ class Restaurant
     #[ORM\Column(length: 255)]
     private ?string $contact = null;
 
-    #[ORM\OneToOne(mappedBy: 'restaurantId', cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(mappedBy: 'restaurant', cascade: ['persist', 'remove'])]
     private ?Schedule $schedule = null;
 
     public function getId(): ?int
@@ -74,8 +74,8 @@ class Restaurant
     public function setSchedule(Schedule $schedule): static
     {
         // set the owning side of the relation if necessary
-        if ($schedule->getRestaurantId() !== $this) {
-            $schedule->setRestaurantId($this);
+        if ($schedule->getRestaurant() !== $this) {
+            $schedule->setRestaurant($this);
         }
 
         $this->schedule = $schedule;

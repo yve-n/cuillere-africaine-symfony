@@ -30,12 +30,12 @@ class Product
 
     #[ORM\ManyToOne(inversedBy: 'products')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Category $categoryId = null;
+    private ?Category $category = null;
 
-    #[ORM\OneToMany(mappedBy: 'productId', targetEntity: Image::class)]
+    #[ORM\OneToMany(mappedBy: 'product', targetEntity: Image::class)]
     private Collection $images;
 
-    #[ORM\OneToMany(mappedBy: 'productId', targetEntity: OrderDetail::class)]
+    #[ORM\OneToMany(mappedBy: 'product', targetEntity: OrderDetail::class)]
     private Collection $orderDetails;
 
     public function __construct()
@@ -97,14 +97,14 @@ class Product
         return $this;
     }
 
-    public function getCategoryId(): ?Category
+    public function getCategory(): ?Category
     {
-        return $this->categoryId;
+        return $this->category;
     }
 
-    public function setCategoryId(?Category $categoryId): static
+    public function setCategory(?Category $category): static
     {
-        $this->categoryId = $categoryId;
+        $this->category = $category;
 
         return $this;
     }
@@ -121,7 +121,7 @@ class Product
     {
         if (!$this->images->contains($image)) {
             $this->images->add($image);
-            $image->setProductId($this);
+            $image->setProduct($this);
         }
 
         return $this;
@@ -131,8 +131,8 @@ class Product
     {
         if ($this->images->removeElement($image)) {
             // set the owning side to null (unless already changed)
-            if ($image->getProductId() === $this) {
-                $image->setProductId(null);
+            if ($image->getProduct() === $this) {
+                $image->setProduct(null);
             }
         }
 
@@ -151,7 +151,7 @@ class Product
     {
         if (!$this->orderDetails->contains($orderDetail)) {
             $this->orderDetails->add($orderDetail);
-            $orderDetail->setProductId($this);
+            $orderDetail->setProduct($this);
         }
 
         return $this;
@@ -161,8 +161,8 @@ class Product
     {
         if ($this->orderDetails->removeElement($orderDetail)) {
             // set the owning side to null (unless already changed)
-            if ($orderDetail->getProductId() === $this) {
-                $orderDetail->setProductId(null);
+            if ($orderDetail->getProduct() === $this) {
+                $orderDetail->setProduct(null);
             }
         }
 
