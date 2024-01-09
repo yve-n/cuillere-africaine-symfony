@@ -16,6 +16,7 @@ security:
         main:
             lazy: true
             provider: app_user_provider
+            user_checker: App\Security\UserChecker
             custom_authenticator: App\Security\UserAuthenticator
             # form_login:
             #     # "app_login" is the name of the route created previously
@@ -43,6 +44,10 @@ security:
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
+
+    role_hierarchy:
+         ROLE_SUPER_ADMIN: [ROLE_ADMIN]
+         ROLE_ADMIN: [ROLE_USER]
 
 when@test:
     security:
